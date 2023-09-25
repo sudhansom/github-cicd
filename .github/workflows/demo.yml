@@ -2,7 +2,7 @@ name: My first workflow
 on: push
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Copy code
         uses: actions/checkout@v3
