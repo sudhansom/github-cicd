@@ -1,0 +1,46 @@
+name: Make different jobs
+on: push
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v3
+      - name: Get Node installed
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Installed Dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v3
+      - name: Get Node installed
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Installed Dependencies
+        run: npm ci
+      - name: Test
+        run: npm run test
+  deployment:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v3
+      - name: Get Node installed
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Installed Dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Deploy live
+        run: echo "Deployed in Netlify..."
