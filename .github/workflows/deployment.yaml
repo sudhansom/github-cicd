@@ -43,4 +43,4 @@ jobs:
       - name: Build
         run: npm run build
       - name: Deploy live
-        run: echo "Deployed in Netlify..."
+        run: echo "Deployed in Netlify"
